@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitch Follower Goal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1f1f23;
+            color: #efeff1;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #18181b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .goal-text {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #a970ff;
+        }
+        .progress-container {
+            background: #0e0e10;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            background: #9147ff;
+            height: 100%;
+            width: 0.0%;
+            transition: width 0.5s ease;
+        }
+        .follower-count {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="goal-text">Follower Goal</div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="follower-count">0 / 1000</div>
+    </div>
+    <script>
+        // Get goal from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const goalParam = urlParams.get('goal');
+        
+        if (goalParam) {
+            const goal = parseInt(goalParam);
+            if (!isNaN(goal) && goal > 0) {
+                const progressPercent = Math.min(100, (0 / goal) * 100);
+                document.querySelector('.progress-bar').style.width = progressPercent + '%';
+                document.querySelector('.follower-count').textContent = '0 / ' + goal;
+            }
+        }
+    </script>
+</body>
+</html>
